@@ -1,0 +1,6 @@
+---
+# variable user
+# variable passwd 
+
+  - name: "modify {{ user }} passwd"
+    raw : echo '{{ user }}:{{ passwd }}' | chpasswd

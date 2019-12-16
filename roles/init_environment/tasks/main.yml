@@ -1,0 +1,119 @@
+---
+- name: 修改系统默认语言为en_US.UTF-8
+  shell: sed -i -r 's/(LANG=)"en_US"/\1"en_US.UTF-8"/g' {{LangFile}}
+  ignore_errors: true
+
+- name: CentOS  安装libselinux-python
+  yum: name=libselinux-python state=present update_cache=yes
+  when: ansible_distribution == "CentOS"
+
+- name: CentOS  永久关闭selinux
+  selinux: state=disabled
+  when: ansible_distribution == "CentOS"
+
+- name: 挂载磁盘[/dev/vdb,/dev/vdc...]
+  script: check_disk_mount.sh {{disk_type}}
+
+# - name: 设置系统DNS
+#   copy: content="{{dns_server}}" dest={{DnsConf}}
+
+# #- name: VPC去掉DHCP获取的DNS-1
+# #  copy: src=dhclient.conf dest=/etc/dhcp/dhclient.conf backup=yes
+# #  when: ansible_virtualization_role == "guest" and ansible_distribution == "Ubuntu"
+# - name: VPC去掉DHCP获取的DNS-1
+#   copy: src=dhclient.conf dest=/etc/dhcp/dhclient.conf backup=yes
+#   when: ansible_distribution == "Ubuntu"
+
+# #- name: VPC去掉DHCP获取的DNS-2
+# #  file: path=/run/resolvconf/interface/eth0.dhclient state=absent
+# #  when: ansible_virtualization_role == "guest" and ansible_distribution == "Ubuntu"
+# - name: VPC去掉DHCP获取的DNS
+#   file: path=/run/resolvconf/interface/eth0.dhclient state=absent
+#   when: ansible_distribution == "Ubuntu"
+
+
+# - name: Ubuntu  更新系统DNS
+#   shell: resolvconf -u
+#   when: ansible_distribution == "Ubuntu"
+
+- name: 修改主机名
+  script: set_hostname.sh {{role}} {{location}}
+
+- name: 创建日志目录
+  script: set_logdir.sh
+
+# - name: 设置nf_conntrack
+#   script: set_nf_conntrack.sh
+
+# - name: Ubuntu  readio_server备份sources.list.d
+#   shell: mv /etc/apt/sources.list.d /etc/apt/sources.list.d-{{ansible_date_time.epoch}} && mkdir -p /etc/apt/sources.list.d
+#   when: role == "master" or role == "admin" or role == "messages" or role == "consumer"
+
+# - name: Ubuntu  添加自定义的apt source
+#   template: src=template_source.list dest=/etc/apt/sources.list backup=yes mode=0644
+#   when: ansible_distribution == "Ubuntu"
+
+# - name: Centos  备份yum.repos.d
+#   shell: mv /etc/yum.repos.d /etc/yum.repos.d-{{ansible_date_time.epoch}}
+#   when: ansible_distribution == "CentOS"
+#   ignore_errors: True
+
+# - name: Centos  创建/etc/yum.repos.d目录
+#   file: path=/etc/yum.repos.d state=directory mode=0755 owner=root group=root 
+#   when: ansible_distribution == "CentOS"
+
+# - name: Centos  添加自定义的yum repo
+#   template: src=template_repo.repo dest=/etc/yum.repos.d/xigua.repo
+#   when: ansible_distribution == "CentOS"
+
+- name: Ubuntu  安装软件包
+  apt: name={{item}} state=present update_cache=yes cache_valid_time=600
+  with_items:
+    - vim
+    - git
+    - curl
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - python-mysqldb
+    - python-requests
+  when: ansible_distribution == "Ubuntu"
+
+# - name: Ubuntu  安装openjdk-8-jdk
+#   apt: name={{item}} state=present update_cache=yes cache_valid_time=600
+#   with_items:
+#     - openjdk-8-jdk
+#   when: ansible_distribution == "Ubuntu" and role == "micro"
+
+- name: CentOS  安装软件包
+  yum: name={{item}} state=present update_cache=yes
+  with_items:
+    - vim
+    - git
+    - curl
+    - yum-utils
+    - device-mapper-persistent-data
+    - libselinux-python
+  when: ansible_distribution == "CentOS"
+
+- name: CentOS pip安装requests
+  pip: name={{item}} state=present
+  with_items:
+    - requests==2.6.0
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+
+- name: 修改limit.conf
+  copy: src=limits.conf dest=/etc/security/limits.conf backup=yes
+
+- name: 修改sysctl.conf
+  template: src=10-xigua-sysctl.conf dest=/etc/sysctl.d/10-xigua-sysctl.conf backup=yes mode=0644
+
+# - name: 执行sysctl
+#   shell: sysctl -p /etc/sysctl.d/10-xigua-sysctl.conf > /dev/null
+#   ignore_errors: true
+
+- name: 添加ssh-key
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '{{public_key}}') }}"

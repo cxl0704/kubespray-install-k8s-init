@@ -1,0 +1,9 @@
+---
+  - name: update ubuntu dns config
+    shell: resolvconf -u
+    ignore_errors: true
+  - name: restart docker
+    service: name=docker state=restarted
+  - name: systemctl reload
+    shell: systemctl daemon-reload
+    ignore_errors: true 

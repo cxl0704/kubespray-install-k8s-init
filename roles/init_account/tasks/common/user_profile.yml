@@ -1,0 +1,4 @@
+---
+
+  - name: "add user profile"
+    copy: backup=yes src=custom_profile.sh  dest=/etc/profile.d/custom_profile.sh

@@ -1,0 +1,8 @@
+---
+#kafka_servers: ["kafka1.sa.56qq.com:9092","kafka2.sa.56qq.com:9092","kafka3.sa.56qq.com:9092"]
+#monitor_kafka_servers: "['10.23.1.5:9092','10.23.1.13:9092','10.23.1.14:9092']"
+monitor_kafka_servers: "['sa-kafka-01.xiguacity.cn:9092','sa-kafka-02.xiguacity.cn:9092','sa-kafka-03.xiguacity.cn:9092']"
+monitor_kafka_topic: "sa.monitor.metric"
+systemlog_kafka_topic: "sa.monitor.syslog"
+monitor_install_directory: "/data/monitor"
+monitor_data_directory: "/data/logs/monitor"

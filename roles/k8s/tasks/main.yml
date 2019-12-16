@@ -1,0 +1,126 @@
+---
+
+- name: Pip install docker 
+  pip:
+    name: docker
+    extra_args: --upgrade
+
+- name: Pull pause-amd64 image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause-amd64
+    repository: registry.aliyuncs.com/google-containers/pause-amd64
+    tag: 3.1
+
+- name: Remove aliyun pause-amd64 image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause-amd64
+    tag: 3.1
+
+- name: Pull k8s-dns-node-cache image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/k8s-dns-node-cache
+    repository: registry.aliyuncs.com/google-containers/k8s-dns-node-cache
+    tag: 1.15.5
+
+- name: Remove aliyun k8s-dns-node-cache image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/k8s-dns-node-cache
+    tag: 1.15.5
+
+- name: Pull cluster-proportional-autoscaler-amd64 image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/cluster-proportional-autoscaler-amd64
+    repository: registry.aliyuncs.com/google-containers/cluster-proportional-autoscaler-amd64
+    tag: 1.6.0
+
+- name: Remove aliyun cluster-proportional-autoscaler-amd64 image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/cluster-proportional-autoscaler-amd64
+    tag: 1.6.0
+
+- name: Pull kube-apiserver image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-apiserver
+    repository: registry.aliyuncs.com/google-containers/kube-apiserver
+    tag: v1.16.3
+
+- name: Remove aliyun kube-apiserver image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-apiserver
+    tag: v1.16.3
+
+- name: Pull kube-controller-manager image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-controller-manager
+    repository: registry.aliyuncs.com/google-containers/kube-controller-manager
+    tag: v1.16.3
+
+- name: Remove aliyun kube-controller-manager image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-controller-manager
+    tag: v1.16.3
+
+- name: Pull kubernetes-dashboard-amd64 image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kubernetes-dashboard-amd64
+    repository: registry.aliyuncs.com/google-containers/kubernetes-dashboard-amd64
+    tag: v1.10.1
+
+- name: Remove aliyun kubernetes-dashboard-amd64 image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kubernetes-dashboard-amd64
+    tag: v1.10.1
+
+- name: Pull kube-scheduler image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-scheduler
+    repository: registry.aliyuncs.com/google-containers/kube-scheduler
+    tag: v1.16.3
+
+- name: Remove aliyun kube-scheduler image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-scheduler
+    tag: v1.16.3
+  
+- name: Pull kube-proxy image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-proxy
+    repository: registry.aliyuncs.com/google-containers/kube-proxy
+    tag: v1.16.3
+
+- name: Remove aliyun kube-proxy image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/kube-proxy
+    tag: v1.16.3
+
+- name: Pull pause image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause
+    repository: registry.aliyuncs.com/google-containers/pause
+    tag: 3.1
+
+- name: Remove aliyun pause image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause
+    tag: 3.1
+
+- name: Pull pause-amd64 image 
+  docker_image:
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause-amd64
+    repository: registry.aliyuncs.com/google-containers/pause-amd64
+    tag: 3.1
+
+- name: Remove aliyun pause-amd64 image 
+  docker_image:
+    state: absent
+    name: registry.cn-beijing.aliyuncs.com/k8s_google_containers/pause-amd64
+    tag: 3.1

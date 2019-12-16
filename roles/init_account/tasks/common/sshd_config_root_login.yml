@@ -1,0 +1,11 @@
+---
+# set ssh PermitRootLogin without-password
+#  - name: "modify ssh PermitRootLogin without-password on Ubuntu"
+#    raw : sed -iE 's/^#{0,1}PermitRootLogin.*/PermitRootLogin without-password/' /etc/ssh/sshd_config
+
+  - name: "M"
+    lineinfile: 
+      backup: yes
+      path: /etc/ssh/sshd_config
+      regexp: '^#{0,1}PermitRootLogin.*'
+      line: 'PermitRootLogin without-password'

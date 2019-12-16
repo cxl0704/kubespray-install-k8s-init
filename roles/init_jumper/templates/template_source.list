@@ -1,0 +1,21 @@
+#deb http://10.6.10.191/ubuntu      {{ansible_distribution_release}} main restricted universe multiverse
+#deb http://10.6.10.191/ubuntu      {{ansible_distribution_release}}-updates main restricted universe multiverse
+#deb http://10.6.10.191/ubuntu      {{ansible_distribution_release}}-security main
+#deb-src http://10.6.10.191/ubuntu  {{ansible_distribution_release}} main restricted universe multiverse
+#deb-src http://10.6.10.191/ubuntu  {{ansible_distribution_release}}-updates main restricted universe multiverse
+
+
+deb [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}} main restricted universe multiverse
+deb-src [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}} main restricted universe multiverse
+
+deb [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-security main restricted universe multiverse
+deb-src [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-security main restricted universe multiverse
+
+deb [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-updates main restricted universe multiverse
+deb-src [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-updates main restricted universe multiverse
+
+deb [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-proposed main restricted universe multiverse
+deb-src [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-proposed main restricted universe multiverse
+
+deb [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-backports main restricted universe multiverse
+deb-src [arch=amd64] http://10.6.10.191/ubuntu/ {{ansible_distribution_release}}-backports main restricted universe multiverse

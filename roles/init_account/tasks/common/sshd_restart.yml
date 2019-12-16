@@ -1,0 +1,12 @@
+---
+  - name: "ssh restart [CentOS6]"
+    raw: "service sshd restart"
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+  - name: "ssh restart [Ubuntu14.04]"
+    raw: "service ssh restart"
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_version == "14.04"
+
+  - name: "ssh restart [Ubuntu16.04 or CentOS7 or Ubuntu18.04]"
+    raw: "systemctl restart sshd.service"
+    when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "7") or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16") or (ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "18")

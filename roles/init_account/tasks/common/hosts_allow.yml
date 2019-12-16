@@ -1,0 +1,3 @@
+---
+  - name: "modify /etc/hosts.allow"
+    copy: backup=yes src=hosts.allow dest=/etc/hosts.allow

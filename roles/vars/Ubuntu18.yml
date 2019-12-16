@@ -1,0 +1,8 @@
+---
+LangFile: /etc/default/locale
+DnsConf: /etc/resolvconf/resolv.conf.d/head
+DockerName: docker-ce
+DockerConf: "[Service]\nExecStart=\nExecStart=/usr/bin/dockerd --live-restore -g /data/docker --insecure-registry docker.56qq.cn:5000 -H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
+DockerConfDest: "/etc/systemd/system/docker.service.d/docker.conf"
+InstallTool: apt
+Logrotate_restart: "invoke-rc.d rsyslog rotate > /dev/null"

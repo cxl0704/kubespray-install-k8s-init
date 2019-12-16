@@ -1,0 +1,11 @@
+---
+LangFile: /etc/sysconfig/i18n
+DnsConf: /etc/resolv.conf
+DockerName: docker-io-1.7.1-2
+DockerRepo: http://mirrors.aliyun.com/repo/epel-6.repo
+#DestRepo: /etc/yum.repos.d/epel.rep
+DestRepo: /etc/yum.repos.d/56qq.repo
+DockerConf: "--graph=/data/docker --insecure-registry=docker.56qq.cn:5000 --host=0.0.0.0:2375 --host=unix:///var/run/docker.sock"
+DockerConfDest: "/etc/sysconfig/docker"
+InstallTool: yum
+Logrotate_restart: "/bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true"

@@ -1,0 +1,10 @@
+---
+
+  - name: "modify loguser shell and home"
+    raw: usermod -d /data/loguser -s /usr/bin/lshell loguser
+    register: result
+    ignore_errors: true
+
+  - name: "create home dir"
+    raw: rsync -av /etc/skel/ /data/loguser/ && chown loguser.loguser /data/loguser -R
+    when: result.rc == 0

@@ -1,0 +1,13 @@
+---
+#zone: vpc-10.8 vpc-10.9
+  - name: "set dns on [CentOS]"
+    copy: backup=yes src=resource/resolv.conf.{{ zone }} dest=/etc/resolv.conf
+    when: ansible_distribution == "CentOS"
+
+  - name: "set dns on [Ubuntu]"
+    copy: backup=yes src=resource/resolv.conf.{{ zone }} dest=/etc/resolvconf/resolv.conf.d/base
+    when: ansible_distribution == "Ubuntu"
+
+  - name: "resolvconf -u [Ubuntu]" 
+    raw: resolvconf -u
+    when: ansible_distribution == "Ubuntu"

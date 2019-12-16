@@ -1,0 +1,8 @@
+---
+  - name: "set dns on [CentOS]"
+    raw: nslookup {{ domain }}
+    register: result
+    ignore_errors: true
+
+  - name: "echo result"
+    debug: var=result.stdout verbosity=0

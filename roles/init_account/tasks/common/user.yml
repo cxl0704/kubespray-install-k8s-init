@@ -1,0 +1,20 @@
+---
+# variable user 
+# variable cmd=[add|del]
+# variable shell
+
+  - name: "create user {{ user }}"
+    user:
+        name: "{{ user }}"
+        shell: "{{ shell }}"
+        createhome: yes
+        home: /data/{{ user }}
+        state: present
+    when: cmd == "add"
+  
+  - name: "delete user {{ user }}"
+    user:
+        name: "{{ user }}"
+        state: absent
+        remove: yes
+    when: cmd == "del"

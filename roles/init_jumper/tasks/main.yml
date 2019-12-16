@@ -1,0 +1,10 @@
+---
+- name: 添加到Jumperserve中
+  #add_to_jumper.py ip hostname 管理员账号 资产组 
+  script: add_to_jumper.py {{ansible_default_ipv4.address}} {{ansible_hostname}} {{jumper_adminuser}} {{jumper_assetgroup}} "{{ansible_system_vendor}}|C{{ansible_processor_vcpus}}|M{{ansible_memtotal_mb}}m|{{ansible_distribution}}{{ansible_distribution_version}}|{{ansible_date_time.date}}"
+  args:
+    executable: /usr/bin/python
+#- name: 添加DNS解析记录
+#  script: add_to_dns.py {{ansible_default_ipv4.address}} {{ansible_hostname}}
+#  args:
+#    executable: /usr/bin/python

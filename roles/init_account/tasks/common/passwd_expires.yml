@@ -1,0 +1,4 @@
+---
+
+  - name: "set passwd expires max days 60"
+    raw : sed -i 's#^PASS_MAX_DAYS.*#PASS_MAX_DAYS 60#' /etc/login.defs 

@@ -1,0 +1,12 @@
+---
+
+ # - name: "sshd delete loguser chroot config"
+ #   raw : sed -i -E '/#tag:chroot|loguser|\/home\/chroot/d' /etc/ssh/sshd_config
+ #
+  - name: "clear loguser ssh chroot config"
+    lineinfile: 
+      backup: yes
+      path: /etc/ssh/sshd_config
+      regexp: 'loguser|/.*/chroot|#tag:chroot'
+      state: absent
+

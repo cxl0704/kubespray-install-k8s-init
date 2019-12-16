@@ -1,0 +1,17 @@
+---
+
+  - name: "install lshell on Ubuntu"
+    apt: name=lshell state=latest
+    when: ansible_distribution == "Ubuntu"
+  
+#  - name: "install lshell on CentOS"
+#    yum: name=lshell state=latest
+#    when: ansible_distribution == "CentOS" 
+  
+  - name: "modify lshell.conf"
+    copy: backup=yes src=lshell.conf dest=/etc/lshell.conf
+    when: role != "bd"
+
+  - name: "modify pay bigdata lshell.conf"
+    copy: backup=yes src=lshell_{{role}}.conf dest=/etc/lshell.conf
+    when: role == "bd"

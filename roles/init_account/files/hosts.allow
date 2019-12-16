@@ -1,0 +1,7 @@
+sshd: 127.0.0.1
+sshd: 172.17.*.*
+sshd: 10.6.*.*
+sshd: 10.8.*.*
+sshd: 10.24.*.*
+sshd: 10.16.*.*
+sshd: ALL:deny

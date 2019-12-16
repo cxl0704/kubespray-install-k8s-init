@@ -1,0 +1,22 @@
+---
+
+  - name: "install cracklib cracklib-dicts on  [CentOS]"
+    raw: "yum install cracklib cracklib-dicts -y"
+    when: ansible_distribution == "CentOS"
+
+  - name: "install libpam-cracklib on  [Ubuntu]"
+    #raw: "apt-get update && apt-get install libpam-cracklib -y"
+    raw: "apt-get install libpam-cracklib -y"
+    when: ansible_distribution == "Ubuntu"
+
+  - name: "set pam on [CentOS6]"
+    copy: backup=yes src=system-auth.CentOS6  dest=/etc/pam.d/system-auth follow=yes
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+  - name: "set pam on [CentOS7]"
+    copy: backup=yes src=system-auth.CentOS7  dest=/etc/pam.d/system-auth
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+
+  - name: "set pam on [Ubuntu]"
+    copy: backup=yes src=common-password.Ubuntu  dest=/etc/pam.d/common-password
+    when: ansible_distribution == "Ubuntu"

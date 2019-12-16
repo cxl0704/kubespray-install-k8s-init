@@ -1,0 +1,11 @@
+---
+
+  - name: "set ssh banner"
+    lineinfile: 
+      backup: yes
+      path: /etc/ssh/sshd_config
+      regexp: '^#Banner'
+      line: 'Banner /etc/issue.net'
+
+  - name: "modify /etc/issue.net"
+    copy: backup=yes src=issue.net dest=/etc/issue.net

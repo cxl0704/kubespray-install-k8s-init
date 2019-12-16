@@ -1,0 +1,12 @@
+---
+# variable user:
+# variable cmd=[add|del]
+# variable keyfile is sshkey pub file. example: keyfile=/root/.ssh/xx.pub
+
+  - name: "add {{ user }} sshkey"
+    authorized_key: user={{ user }} key="{{ lookup('file', keyfile) }}" state=present
+    when: cmd == "add"
+
+  - name: "del {{ user }} sshkey"
+    authorized_key: user={{ user }} key="{{ lookup('file', keyfile) }}" state=absent
+    when: cmd == "del"

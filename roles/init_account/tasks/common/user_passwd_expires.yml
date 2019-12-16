@@ -1,0 +1,5 @@
+---
+
+  - name: "set {{ user }} passwd expires max days {{ max_days }}"
+    raw : chage -M {{ max_days }} {{ user }}
+    ignore_errors: true

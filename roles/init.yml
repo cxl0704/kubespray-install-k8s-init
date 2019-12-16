@@ -1,0 +1,15 @@
+---
+- hosts: "{{hosts}}"
+  remote_user: root
+  gather_facts: true
+  vars_files:
+    - ["vars/{{ ansible_distribution }}{{ ansible_distribution_major_version }}.yml"]
+    - ["vars/os_user_passwd.yml"]
+    - ["vars/monitor.yml"]
+
+  roles:
+  # - {role: init_environment, tags: "environment"}
+  # - {role: init_account, tags: "account"}
+  # - {role: init_jumper, tags: "jump"}
+  - {role: k8s, tags: "k8s"}
+  

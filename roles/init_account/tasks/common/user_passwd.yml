@@ -1,0 +1,8 @@
+---
+# variable user
+# variable passwd 
+
+# - name: "add {{ user }} authorized public key"
+#   raw : echo '{{ user }}:{{ passwd }}' | chpasswd
+  - name: "add {{ user }} authorized public key"
+    authorized_key: user={{ user }} key={{ lookup('file','jumpkey_{{ user }}') }} state=present

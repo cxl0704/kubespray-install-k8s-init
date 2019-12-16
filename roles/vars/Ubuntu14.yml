@@ -1,0 +1,8 @@
+---
+LangFile: /etc/default/locale
+DnsConf: /etc/resolvconf/resolv.conf.d/base
+DockerName: docker-ce=17.09.1~ce-0~ubuntu
+DockerConf: "--live-restore -g /data/docker --insecure-registry docker.56qq.cn:5000 -H 0.0.0.0:2375 -H unix:///var/run/docker.sock"
+DockerConfDest: "/etc/default/docker"
+InstallTool: apt
+Logrotate_restart: "reload rsyslog >/dev/null 2>&1 || true"

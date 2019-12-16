@@ -1,0 +1,11 @@
+---
+# variable user
+# variable cmd=[add|del]
+
+  - name: "add {{ user }} sudo config"
+    raw: 'echo "{{ user }} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/{{ user }}'
+    when: cmd == "add"
+
+  - name: "del {{ user }} sudo config"
+    raw: "rm -f /etc/sudoers.d/{{ user }}"
+    when: cmd == "del"

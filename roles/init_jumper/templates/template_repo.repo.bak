@@ -1,0 +1,46 @@
+[base]
+name=CentOS-$releasever - Base - 56qq.cn
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/$releasever/base
+gpgcheck=1
+gpgkey=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/RPM-GPG-KEY-CentOS-$releasever
+
+#released updates
+[updates]
+name=CentOS-$releasever - Updates - 56qq.cn
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/$releasever/updates
+gpgcheck=1
+gpgkey=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/RPM-GPG-KEY-CentOS-$releasever
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras - 56qq.cn
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/$releasever/extras
+gpgcheck=1
+gpgkey=http://mirrors.56qq.cn/centos-repo/new-centos/163.com/RPM-GPG-KEY-CentOS-$releasever
+
+[epel]
+name=Extra Packages for Enterprise Linux [56qq.cn] $releasever - $basearch
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/tuna/epel/$releasever/$basearch
+#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+
+[epel-debuginfo]
+name=Extra Packages for Enterprise Linux [56qq.cn] $releasever - $basearch - Debug
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/tuna/epel/$releasever/$basearch/debug
+#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-$releasever&arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+gpgcheck=1
+
+[epel-source]
+name=Extra Packages for Enterprise Linux [56qq.cn] $releasever - $basearch - Source
+baseurl=http://mirrors.56qq.cn/centos-repo/new-centos/tuna/epel/$releasever/SRPMS
+#mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-source-$releasever&arch=$basearch
+failovermethod=priority
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+gpgcheck=1

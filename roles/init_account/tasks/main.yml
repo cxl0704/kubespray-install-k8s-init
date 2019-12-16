@@ -1,0 +1,31 @@
+---
+#  - include_tasks: common/lshell.yml
+  - include_tasks: common/user_profile.yml
+  - include_tasks: common/passwd_expires.yml
+  - include_tasks: common/pam_policy.yml
+  - include_tasks: common/hosts_allow.yml
+  - include_tasks: common/user.yml
+    vars:
+      cmd: add
+      user: deploy
+      shell: /bin/bash
+    when: role != "master" and role != "admin" and role != "messages" and role != "consumer"
+  - include_tasks: common/user_sudo.yml
+    vars:
+      cmd: add
+      user: deploy
+#    - include_tasks: common/user_passwd.yml user=deploy passwd={{ User_deploy_passwd }}
+  - include_tasks: common/user_passwd.yml
+    vars:
+      user: deploy
+  - include_tasks: common/user_passwd_expires.yml
+    vars:
+      user: deploy
+      max_days: "{{ User_max_days }}"
+#  - include_tasks: common/user.yml cmd=add user=loguser shell=/usr/bin/lshell
+#    - include_tasks: common/user_passwd.yml user=loguser passwd={{ User_loguser_passwd }}
+#    - include_tasks: common/user_passwd.yml user=loguser
+#  - include_tasks: common/user_passwd_expires.yml user=loguser max_days={{ User_max_days }}
+  - include_tasks: common/sshd_config_root_login.yml
+  - include_tasks: common/sshd_config_banner.yml
+  - include_tasks: common/sshd_restart.yml
