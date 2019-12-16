@@ -1,0 +1,49 @@
+[k8s]
+172.17.191.31 role=kube-master-01 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.32 role=kube-master-02 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.2 role=kube-master-03 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+172.17.191.29 role=kube-node-01 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.30 role=kube-node-02 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.12 role=kube-node-03 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+[test]
+172.17.190.250 role=sidekiq ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+[node]
+172.17.191.31 role=kube-master-01 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.32 role=kube-master-02 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.2 role=kube-master-03 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+172.17.191.29 role=kube-node-01 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.30 role=kube-node-02 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.12 role=kube-node-03 ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+172.17.191.9 role=sidekiq ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.14 role=sidekiq ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.191.15 role=sidekiq ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+172.17.190.250 role=sidekiq ansible_ssh_pass=xigua@123 disk_type="ext4" jumper_assetgroup="sa-product"
+
+
+
+[all:vars]
+extend=""
+system="linux"
+mark=pek-172
+location="pek"
+monitor="false"
+zabbix_sender_host="zbxserver"
+zabbix_server=10.6.10.200
+ping_server=10.6.10.200
+agentd_meta=linux-vpc-172-17
+dns_server="nameserver 10.6.200.172\n"
+public_key="/.ssh/id_rsa.pub"
+
+docker_subnet=10.9.0.1/24
+
+disk_type="ext4"
+jumper_adminuser="deploy"
+
+pull_registry="registry.cn-beijing.aliyuncs.com/k8s_google_containers"
+
+#x.x.x.x role=[k8s|app|db|pg|bd|mq|op|...] mark=[tsn|kwe|txyun|aliyun] system=[windows|linux]
